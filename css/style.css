@@ -14,6 +14,7 @@
     --color-light: #f4f4f4;
     --color-dark: #111;
     --color-orange: #ff6600;
+    --color-orange-alpha:  rgb(255, 102, 0, 0.4);
     --spacing-sm: 10px;
     --spacing-md: 20px;
     --spacing-lg: 30px;
@@ -102,14 +103,18 @@ a:hover {
     line-height: 1.6;
 }
 
+.icon {
+    animation: motinha 2s infinite linear;
+}
+
 
 .btn {
     border: 2px solid var(--color-orange);
     padding: var(--spacing-sm) var(--spacing-lg);
     /*aumentar a parte de dentro */
     border-radius: 100px;
-    background-color: var(--color-orange);
-    transition: background-color .5s;
+    background-color: var(--color-orange-alpha);
+    transition: background-color .7s;       
 }
 
 .btn:hover {
@@ -146,12 +151,12 @@ a:hover {
     align-items: center;
     justify-content: center;
     gap: var(--spacing-sm);
-
+    flex-wrap:wrap;
 }
 
 .grid-motos-item {
     width: 30%;
-    box-shadow: 1px 1px 30px var(--color-orange);
+    box-shadow: inset 1px 1px 10px var(--color-orange-alpha);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -159,9 +164,64 @@ a:hover {
     gap: var(--spacing-md);
     color: var(--color-light);
     padding: var(--spacing-md);
+    border-radius: 8px;
+    text-align: center;
+    transition: .5s;
+    margin: var(--spacing-sm);
+    /* filter: grayscale(1); */
+    animation: viewAnimation both;
+    animation-timeline: view(70% 20%);
+}
+
+.grid-motos-item:hover{
+    scale: 1.05;
+    /* filter: grayscale(0); */
 }
 
 .grid-motos-item img {
-    width: 80%;
+    width: 100%; 
     aspect-ratio: 16/9;
-}   
+    border-radius: 8px;
+}
+
+.grid-motos-item p {
+    width: 75%;
+    text-wrap: balance;
+
+}
+
+/* pequena animaçao */
+@keyframes motinha {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    50%{
+        transform: translateX(10px);
+    }
+
+}
+
+@keyframes viewAnimation {
+    from{
+        opacity: 0;
+        transform: scale(.5);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }    
+}
+
+/* pensando no meio responsivo */
+@media(width <= 900px){
+    .grid-motos-item{
+        width: 45%;             
+    }
+}
+@media(width <= 600px){
+    .grid-motos-item{
+        width: 90%;             
+    }
+}
